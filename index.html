@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<title>Prince Mode 💪</title>
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Segoe UI, sans-serif;
+}
+
+body{
+  height:100vh;
+  overflow:hidden;
+  color:white;
+  background:#0d0d0d;
+}
+
+/* ---------- PAGE LAYOUT ---------- */
+.page{
+  position:absolute;
+  width:100%;
+  height:100%;
+  display:none;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  padding:20px;
+}
+
+.show{display:flex}
+
+/* ---------- BOYS GRADIENT BG ---------- */
+.bg{
+  background:linear-gradient(135deg,#000000,#111827,#1f2937,#000000);
+}
+
+/* ---------- TEXT ---------- */
+h1{
+  font-size:7vw;
+  letter-spacing:2px;
+  margin-bottom:30px;
+}
+
+p{
+  font-size:5vw;
+  max-width:95%;
+  line-height:1.6;
+}
+
+/* ---------- BUTTON ---------- */
+button{
+  padding:16px 38px;
+  font-size:20px;
+  margin:12px;
+  border:none;
+  border-radius:12px;
+  cursor:pointer;
+  background:#1f2937;
+  color:white;
+  transition:0.25s;
+}
+
+button:hover{
+  background:#2563eb;
+  transform:scale(1.08);
+}
+
+/* correct button glow */
+.correct{
+  background:#00c853 !important;
+  box-shadow:0 0 20px #00ff88;
+}
+
+/* ---------- FINAL TEXT GLOW ---------- */
+.glow{
+  text-shadow:0 0 8px white,0 0 18px #3b82f6;
+}
+
+/* ---------- PARTICLES ---------- */
+.star{
+  position:absolute;
+  color:#9ca3af;
+  animation:twinkle 2s infinite alternate;
+}
+
+@keyframes twinkle{
+  from{opacity:0.2}
+  to{opacity:1}
+}
+</style>
+</head>
+
+<body>
+
+<!-- PAGE 1 -->
+<div id="p1" class="page bg show">
+  <h1>💪 Prince Mode</h1>
+  <p>Abe prince tu ek man hai,<br>bohot mat ban.</p>
+  <button onclick="show('p2')">Next ➜</button>
+</div>
+
+
+<!-- PAGE 2 -->
+<div id="p2" class="page bg">
+  <h1>Man kaisa hota hai?</h1>
+
+  <div>
+    <button onclick="wrong(this)">Strong</button>
+    <button onclick="wrong(this)">Weak</button>
+    <button onclick="wrong(this)">Smart</button>
+    <button onclick="correct(this)">Calm</button>
+  </div>
+
+  <button id="nextBtn" style="display:none" onclick="goFinal()">Next ➜</button>
+</div>
+
+
+<!-- FINAL PAGE -->
+<div id="p3" class="page bg">
+  <p class="glow">
+  Prince bro…<br><br>
+  Dekho me kon hu kya hu wo matter nahi karta.<br><br>
+  Me try kar raha hu jo batane ka, sikhane ka — seekh lo.<br><br>
+  Kyuki meko koi samajh nahi paya aaj tak.<br><br>
+  Me puri duniya padh liya hu, kitaab jaisa samjhe meri jaan.<br><br>
+  Ab soja…<br><br>
+  Good Night 🌙
+  </p>
+</div>
+
+
+<script>
+
+/* page switch */
+function show(id){
+  document.querySelectorAll(".page").forEach(x=>x.classList.remove("show"));
+  document.getElementById(id).classList.add("show");
+}
+
+/* wrong option */
+function wrong(btn){
+  btn.style.background="#7f1d1d";
+}
+
+/* correct option */
+function correct(btn){
+  btn.classList.add("correct");
+  document.getElementById("nextBtn").style.display="inline-block";
+}
+
+/* final page */
+function goFinal(){
+  show("p3");
+  stars();
+}
+
+/* star particles */
+function stars(){
+  for(let i=0;i<60;i++){
+    let s=document.createElement("div");
+    s.innerHTML="✦";
+    s.className="star";
+    s.style.left=Math.random()*100+"vw";
+    s.style.top=Math.random()*100+"vh";
+    document.body.appendChild(s);
+  }
+}
+
+</script>
+
+</body>
+</html>
